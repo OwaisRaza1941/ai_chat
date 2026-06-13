@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthServices {
   /// Authentication Services
   final FirebaseAuth _authSerices = FirebaseAuth.instance;
 
   /// GOOGL SININ IN INSTANCE
-  final GoogleSignIn _googleSingIn = GoogleSignIn.instance;
+  // final GoogleSignIn _googleSingIn = GoogleSignIn.instance;
 
   /// SINUP Loading
   RxBool sinUpLoading = false.obs;
@@ -41,31 +41,31 @@ class AuthServices {
   }
 
   //// GOOGLE SINGIN
-  Future<UserCredential> continueWithGoogle() async {
-    try {
-      String webClientId =
-          '868475064396-cm21dqgbmnlgfp654f10lu18mclnunc6.apps.googleusercontent.com';
+  // Future<UserCredential> continueWithGoogle() async {
+  //   try {
+  //     String webClientId =
+  //         '868475064396-cm21dqgbmnlgfp654f10lu18mclnunc6.apps.googleusercontent.com';
 
-      await _googleSingIn.initialize(serverClientId: webClientId);
+  //     await _googleSingIn.initialize(serverClientId: webClientId);
 
-      GoogleSignInAccount account = await _googleSingIn.authenticate();
+  //     GoogleSignInAccount account = await _googleSingIn.authenticate();
 
-      GoogleSignInAuthentication googleAuth = account.authentication;
+  //     GoogleSignInAuthentication googleAuth = account.authentication;
 
-      final credential = GoogleAuthProvider.credential(
-        idToken: googleAuth.idToken,
-        accessToken: googleAuth.idToken,
-      );
+  //     final credential = GoogleAuthProvider.credential(
+  //       idToken: googleAuth.idToken,
+  //       accessToken: googleAuth.idToken,
+  //     );
 
-      UserCredential userCredential = await _authSerices.signInWithCredential(
-        credential,
-      );
+  //     UserCredential userCredential = await _authSerices.signInWithCredential(
+  //       credential,
+  //     );
 
-      return userCredential;
-    } on FirebaseException {
-      rethrow;
-    }
-  }
+  //     return userCredential;
+  //   } on FirebaseException {
+  //     rethrow;
+  //   }
+  // }
 
   /// Reset Password
   Future<void> resetPassword(String email) async {

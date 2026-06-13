@@ -7,6 +7,7 @@ Widget settingTile(
   String title,
   BuildContext context, {
   Widget? trailing,
+  VoidCallback? onTap,
 }) {
   bool isDark = Theme.of(context).brightness == Brightness.dark;
   return Container(
@@ -26,6 +27,7 @@ Widget settingTile(
     ),
 
     child: ListTile(
+      onTap: onTap,
       leading: Icon(icon, color: AppColors.iconInactive),
       title: Text(
         title,

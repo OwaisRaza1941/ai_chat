@@ -1,4 +1,5 @@
 import 'package:ai_chat/controller/chat_controller.dart';
+import 'package:ai_chat/controller/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,7 @@ class HomeDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ChatController chatController = Get.find();
+    final ThemeController themeController = Get.find();
 
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
@@ -155,11 +157,15 @@ class HomeDrawer extends StatelessWidget {
                   ),
                 ),
 
-                trailing: Switch(
-                  activeColor: AppColors.primaryPurple,
-                  value: isDark,
-                  onChanged: (value) {},
-                ),
+                trailing: Obx(() {
+                  return Switch(
+                    activeColor: AppColors.primaryPurple,
+                    value: themeController.isDarkTheme.value,
+                    onChanged: (value) {
+                      themeController.changeTheme(value);
+                    },
+                  );
+                }),
               ),
             ),
           ],

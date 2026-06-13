@@ -39,8 +39,9 @@ class HistoryCard extends StatelessWidget {
         ),
         subtitle: Text(
           subtitle,
-          style: AppTextStyle.bodyLarge.copyWith(
+          style: AppTextStyle.bodySmall.copyWith(
             color: Theme.of(context).textTheme.bodySmall?.color,
+            fontSize: 12,
           ),
         ),
 

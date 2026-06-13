@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
 
             /// Start New Chats
             StartNewChats(),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
 
             /// Recent Chats
             Expanded(
@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                     return Center(child: Text("No chats yet"));
                   }
                   return ListView.builder(
-                    padding: EdgeInsets.zero, 
+                    padding: EdgeInsets.zero,
                     itemCount: chats.length,
                     itemBuilder: (context, index) {
                       final chat = chats[index];

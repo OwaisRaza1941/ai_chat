@@ -22,9 +22,7 @@ class SinUpSocialButtons extends StatelessWidget {
           isDark: isDark,
           theme: theme,
           image: 'assets/icons/google_icon.png',
-          onTap: () async {
-            await authController.continueWithGoogle();
-          },
+          onTap: () {},
         ),
         SizedBox(width: 30),
         socialButtons(

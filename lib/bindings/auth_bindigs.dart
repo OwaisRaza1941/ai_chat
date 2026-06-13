@@ -1,5 +1,6 @@
 import 'package:ai_chat/controller/auth_controller.dart';
 import 'package:ai_chat/controller/chat_controller.dart';
+import 'package:ai_chat/controller/theme_controller.dart';
 import 'package:get/get.dart';
 
 class InitialBinding extends Bindings {
@@ -7,5 +8,6 @@ class InitialBinding extends Bindings {
   void dependencies() {
     Get.put(AuthController(), permanent: true);
     Get.put(ChatController(), permanent: true);
+    Get.put(ThemeController(), permanent: true);
   }
 }

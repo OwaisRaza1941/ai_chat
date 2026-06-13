@@ -66,6 +66,7 @@ class ToolCard extends StatelessWidget {
             subTitle,
             style: AppTextStyle.labelMedium.copyWith(
               color: AppColors.greyText,
+              fontWeight: FontWeight.w100,
               fontSize: 12,
             ),
           ),

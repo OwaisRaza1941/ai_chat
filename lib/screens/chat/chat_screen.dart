@@ -46,12 +46,12 @@ class ChatScreen extends StatelessWidget {
                     final messages = snapshot.data!;
 
                     return ListView.builder(
+                      padding: EdgeInsets.zero,
                       controller: chatController.scrollController,
                       itemCount: messages.length,
                       itemBuilder: (context, index) {
                         final msg = messages[index];
                         final isMe = msg.role == "user";
-
                         return chatBubble(
                           text: msg.text,
                           isMe: isMe,
@@ -73,9 +73,17 @@ class ChatScreen extends StatelessWidget {
                 padding: EdgeInsets.all(12),
                 child: Row(
                   children: [
-                    CircularProgressIndicator(strokeWidth: 2),
-                    SizedBox(width: 10),
-                    Text("AI is typing..."),
+                    Image.asset(
+                      'assets/logos/logo.png',
+                      fit: BoxFit.cover,
+                      width: 80,
+                      height: 80,
+                    ),
+                    SizedBox(width: 8),
+                    CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: isDark ? AppColors.purpleGlow : AppColors.blueGlow,
+                    ),
                   ],
                 ),
               );
@@ -88,16 +96,16 @@ class ChatScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
+                       
                       decoration: BoxDecoration(
                         color: isDark ? AppColors.cardColor : Colors.white,
-                        border: Border.all(
-                          color: isDark
-                              ? AppColors.cardColor
-                              : AppColors.primaryBlue,
-                        ),
-                        borderRadius: BorderRadius.circular(30),
+                        border: isDark
+                            ? null
+                            : Border.all(color: AppColors.primaryBlue),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                       child: TextField(
+                        maxLines: null,
                         controller: messageController,
                         decoration: InputDecoration(
                           hintText: 'Type a messege',

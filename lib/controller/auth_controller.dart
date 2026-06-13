@@ -143,33 +143,33 @@ class AuthController extends GetxController {
   }
 
   //// GOOGLE AUTHENTICATION
-  Future<void> continueWithGoogle() async {
-    try {
-      googleLoading.value = true;
-      UserCredential? credential = await _authServices.continueWithGoogle();
-      if (credential != null) {
-        AppSnackbar.success('Googel Account Created Succesfull');
-      }
-    } on FirebaseAuthException catch (e) {
-      String msg = "Google sign in failed";
+  // Future<void> continueWithGoogle() async {
+  //   try {
+  //     googleLoading.value = true;
+  //     UserCredential? credential = await _authServices.continueWithGoogle();
+  //     if (credential != null) {
+  //       AppSnackbar.success('Googel Account Created Succesfull');
+  //     }
+  //   } on FirebaseAuthException catch (e) {
+  //     String msg = "Google sign in failed";
 
-      if (e.code == "account-exists-with-different-credential") {
-        msg = "This email is already linked with another sign in method.";
-      } else if (e.code == "invalid-credential") {
-        msg = "Invalid Google credentials.";
-      } else if (e.code == "operation-not-allowed") {
-        msg = "Google Sign-In is not enabled.";
-      } else if (e.code == "network-request-failed") {
-        msg = "Please check your internet connection.";
-      } else if (e.code == "too-many-requests") {
-        msg = "Too many attempts. Try again later.";
-      }
+  //     if (e.code == "account-exists-with-different-credential") {
+  //       msg = "This email is already linked with another sign in method.";
+  //     } else if (e.code == "invalid-credential") {
+  //       msg = "Invalid Google credentials.";
+  //     } else if (e.code == "operation-not-allowed") {
+  //       msg = "Google Sign-In is not enabled.";
+  //     } else if (e.code == "network-request-failed") {
+  //       msg = "Please check your internet connection.";
+  //     } else if (e.code == "too-many-requests") {
+  //       msg = "Too many attempts. Try again later.";
+  //     }
 
-      AppSnackbar.error(msg);
-    } finally {
-      googleLoading.value = false;
-    }
-  }
+  //     AppSnackbar.error(msg);
+  //   } finally {
+  //     googleLoading.value = false;
+  //   }
+  // }
 
   /// Reset Password
   Future<void> resetPassword(String email) async {

@@ -1,4 +1,5 @@
 import 'package:ai_chat/components/setting_tile.dart';
+import 'package:ai_chat/controller/theme_controller.dart';
 import 'package:ai_chat/utils/style/app_colors.dart';
 import 'package:ai_chat/utils/style/text_style.dart';
 import 'package:ai_chat/widgets/custom_app_padding.dart';
@@ -10,6 +11,8 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
+
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: AppPadding(
@@ -54,11 +57,15 @@ class SettingsScreen extends StatelessWidget {
               Icons.dark_mode_outlined,
               "Theme",
               context,
-              trailing: Switch(
-                value: true,
-                onChanged: (v) {},
-                activeColor: AppColors.primaryPurple,
-              ),
+              trailing: Obx(() {
+                return Switch(
+                  activeColor: AppColors.primaryPurple,
+                  value: themeController.isDarkTheme.value,
+                  onChanged: (value) {
+                    themeController.changeTheme(value);
+                  },
+                );
+              }),
             ),
 
             settingTile(

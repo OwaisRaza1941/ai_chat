@@ -1,8 +1,12 @@
+import 'package:ai_chat/controller/chat_controller.dart';
+import 'package:ai_chat/screens/chat/chat_screen.dart';
 import 'package:ai_chat/utils/style/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({super.key});
+  HomeAppBar({super.key});
+  final ChatController chatController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +50,16 @@ class HomeAppBar extends StatelessWidget {
             ),
           ],
         ),
-        CircleAvatar(
-          radius: 20,
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          child: Icon(Icons.add, color: Theme.of(context).iconTheme.color),
+        InkWell(
+          onTap: () async {
+            await chatController.startNewChat();
+            Get.to(() => ChatScreen());
+          },
+          child: CircleAvatar(
+            radius: 20,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            child: Icon(Icons.add, color: Theme.of(context).iconTheme.color),
+          ),
         ),
       ],
     );
