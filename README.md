@@ -120,7 +120,13 @@ Fast, intelligent, and lightweight AI responses.
 ---
 
 ## 📸 Screenshots
-(Add your app screenshots here)
+ <img width="720" height="1600" alt="Image" src="https://github.com/user-attachments/assets/0d196562-2ce2-4eef-bc45-f050a229638c" />
+<img width="720" height="1600" alt="Image" src="https://github.com/user-attachments/assets/42b3cdb5-6b48-4f0d-a465-e2d0527ac38a" />
+
+<img width="720" height="1600" alt="Image" src="https://github.com/user-attachments/assets/ab8aee1c-47ce-442e-9107-7c997315bd3d" />
+<img width="720" height="1600" alt="Image" src="https://github.com/user-attachments/assets/6444fc08-4561-4731-b72a-d50d6b029eb0" />
+
+<img width="720" height="1600" alt="Image" src="https://github.com/user-attachments/assets/00a5fd3c-54c0-45cf-bbfd-8b47dbab9610" />
 
 ---
 
