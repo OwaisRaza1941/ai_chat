@@ -1,6 +1,7 @@
 import 'package:ai_chat/components/fromat_chat.dart';
 import 'package:ai_chat/controller/chat_controller.dart';
 import 'package:ai_chat/model/chat_room.dart';
+import 'package:ai_chat/screens/chat/chat_screen.dart';
 import 'package:ai_chat/screens/home/widgets/animated_chats_card.dart';
 import 'package:ai_chat/screens/home/widgets/home_app_bar.dart';
 import 'package:ai_chat/screens/home/widgets/home_drawer.dart';
@@ -59,11 +60,17 @@ class HomeScreen extends StatelessWidget {
                     itemCount: chats.length,
                     itemBuilder: (context, index) {
                       final chat = chats[index];
-                      return AnimatedChatCard(
-                        title: chat.title,
-                        subtitle: chat.lastMessage,
-                        time: formatChatTime(chat.updatedAt),
-                        icon: Icons.chat,
+                      return GestureDetector(
+                        onTap: () {
+                          chatController.conversationId.value = chat.id;
+                          Get.to(() => ChatScreen());
+                        },
+                        child: AnimatedChatCard(
+                          title: chat.title,
+                          subtitle: chat.lastMessage,
+                          time: formatChatTime(chat.updatedAt),
+                          icon: Icons.chat,
+                        ),
                       );
                     },
                   );

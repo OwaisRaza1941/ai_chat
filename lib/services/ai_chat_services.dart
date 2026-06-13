@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class AIChatServices {
-  final String apiKey = ' ';
+  final String apiKey = '';
 
   Future<String> sendMessage(String prompt) async {
     try {

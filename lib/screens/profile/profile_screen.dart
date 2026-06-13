@@ -1,4 +1,6 @@
+import 'package:ai_chat/auth/login/login_screen.dart';
 import 'package:ai_chat/controller/auth_controller.dart';
+import 'package:ai_chat/dailog/logout_dialoge.dart';
 import 'package:ai_chat/utils/style/app_colors.dart';
 import 'package:ai_chat/utils/style/text_style.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 45,
-                        backgroundImage: AssetImage("assets/profile.png"),
+                        backgroundImage: AssetImage("assets/logos/logo.png"),
                       ),
 
                       SizedBox(height: 15),
@@ -112,8 +114,18 @@ class ProfileScreen extends StatelessWidget {
                       icon: Icons.logout,
                       title: "Logout",
                       context: context,
-                      onTap: () async {
-                        await authController.logout();
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return LogoutDialoge(
+                              onPressed: () async {
+                                await authController.logout();
+                                Get.offAll(LoginScreen());
+                              },
+                            );
+                          },
+                        );
                       },
                     ),
                   ],
