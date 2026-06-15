@@ -3,8 +3,7 @@ import 'package:http/http.dart' as http;
 
 class AIChatServices {
   /// API KEY
-  final String apiKey =
-      ' ';
+  final String apiKey = ' ';
 
   //// Send Messege IN Qroq Ai
   Future<String> sendMessage(String prompt) async {

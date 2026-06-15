@@ -106,6 +106,6 @@ class ChatController extends GetxController {
       await _chatServices.deleteChat(conversationId);
     } catch (e) {
       print('Erro: e');
-    } finally {}
+    }
   }
 }

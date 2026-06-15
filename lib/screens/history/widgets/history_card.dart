@@ -40,6 +40,7 @@ class HistoryCard extends StatelessWidget {
         subtitle: Text(
           subtitle,
           style: AppTextStyle.bodySmall.copyWith(
+            overflow: TextOverflow.ellipsis,
             color: Theme.of(context).textTheme.bodySmall?.color,
             fontSize: 12,
           ),

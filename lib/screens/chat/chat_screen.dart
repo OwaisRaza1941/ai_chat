@@ -106,6 +106,7 @@ class ChatScreen extends StatelessWidget {
                       ),
                       child: TextField(
                         maxLines: null,
+                        
                         controller: messageController,
                         decoration: InputDecoration(
                           hintText: 'Type a messege',

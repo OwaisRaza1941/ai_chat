@@ -25,6 +25,8 @@ class ProfileScreen extends StatelessWidget {
           child: AppPadding(
             bottom: 20,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: 20),
 
@@ -99,12 +101,7 @@ class ProfileScreen extends StatelessWidget {
                       title: "History",
                       context: context,
                     ),
-                    _tile(
-                      isDark: isDark,
-                      icon: Icons.favorite_border,
-                      title: "Favorites",
-                      context: context,
-                    ),
+
                     _tile(
                       isDark: isDark,
                       icon: Icons.settings_outlined,
