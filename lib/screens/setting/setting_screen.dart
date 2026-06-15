@@ -29,7 +29,7 @@ class SettingsScreen extends StatelessWidget {
             Text(
               "Appearance",
               style: TextStyle(
-                color: Colors.white,
+                color: AppColors.whiteText,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -59,7 +59,7 @@ class SettingsScreen extends StatelessWidget {
                 width: 25,
                 height: 25,
                 decoration: BoxDecoration(
-                  color: Color(0xff7C3AED),
+                  color: AppColors.primaryPurple,
                   shape: BoxShape.circle,
                 ),
               ),
@@ -70,7 +70,7 @@ class SettingsScreen extends StatelessWidget {
             Text(
               "General",
               style: TextStyle(
-                color: Colors.white,
+                color: AppColors.whiteText,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -111,7 +111,7 @@ class SettingsScreen extends StatelessWidget {
             Text(
               "About",
               style: TextStyle(
-                color: Colors.white,
+                color: AppColors.whiteText,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
