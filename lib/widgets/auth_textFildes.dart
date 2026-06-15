@@ -50,6 +50,7 @@ class AuthTextField extends StatelessWidget {
                 prefixIcon,
                 color: isDark ? AppColors.iconInactive : Colors.grey,
               ),
+              isDense: true,
               suffixIcon: showSuccess
                   ? Icon(Icons.check_circle, color: Colors.green)
                   : onTogglePassword != null
