@@ -71,6 +71,7 @@ class HomeScreen extends StatelessWidget {
                           subtitle: chat.lastMessage,
                           time: formatChatTime(chat.updatedAt),
                           icon: Icons.chat,
+                          conversationId: chat.id,
                         ),
                       );
                     },

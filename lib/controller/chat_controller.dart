@@ -99,4 +99,13 @@ class ChatController extends GetxController {
   Stream<List<ChatRoom>> getChats() {
     return _chatServices.getChats();
   }
+
+  /// Delete
+  Future<void> deleteChat(String conversationId) async {
+    try {
+      await _chatServices.deleteChat(conversationId);
+    } catch (e) {
+      print('Erro: e');
+    } finally {}
+  }
 }

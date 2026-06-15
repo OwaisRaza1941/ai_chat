@@ -86,6 +86,7 @@ class ChatServices {
         );
   }
 
+  /// Create Chat Meta Data
   Future<void> createChatMetadata(String chatId, String firstMessage) async {
     /// Create Chat Meta Data
     await _db.collection('users').doc(uid).collection('chats').doc(chatId).set({
@@ -95,5 +96,21 @@ class ChatServices {
       "lastMessage": firstMessage,
       "updatedAt": DateTime.now().toIso8601String(),
     });
+  }
+
+  /// Delete Chat
+  Future<void> deleteChat(String conversationId) async {
+    try {
+      /// Get Current User UID;
+      final uid = _auth.currentUser!.uid;
+      await _db
+          .collection('users')
+          .doc(uid)
+          .collection('chats')
+          .doc(conversationId)
+          .delete();
+    } on FirebaseException {
+      rethrow;
+    }
   }
 }

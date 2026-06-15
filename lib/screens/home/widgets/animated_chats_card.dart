@@ -1,12 +1,15 @@
+import 'package:ai_chat/controller/chat_controller.dart';
 import 'package:ai_chat/utils/style/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_chat/utils/style/text_style.dart';
+import 'package:get/get.dart';
 
 class AnimatedChatCard extends StatefulWidget {
   final String title;
   final String subtitle;
   final IconData icon;
   final String time;
+  final String conversationId;
 
   const AnimatedChatCard({
     super.key,
@@ -14,6 +17,7 @@ class AnimatedChatCard extends StatefulWidget {
     required this.subtitle,
     required this.icon,
     required this.time,
+    required this.conversationId,
   });
 
   @override
@@ -43,6 +47,9 @@ class _AnimatedChatCardState extends State<AnimatedChatCard>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+
+    //// ChatController
+    final ChatController chatController = Get.find();
 
     return FadeTransition(
       opacity: animation,
@@ -120,11 +127,18 @@ class _AnimatedChatCardState extends State<AnimatedChatCard>
                   ),
 
                   SizedBox(height: 5),
-
-                  Icon(
-                    Icons.more_vert,
-                    size: 18,
-                    color: isDark ? Colors.grey.shade400 : Colors.grey.shade600,
+                  IconButton(
+                    style: IconButton.styleFrom(padding: EdgeInsets.zero),
+                    onPressed: () {
+                      chatController.deleteChat(widget.conversationId);
+                    },
+                    icon: Icon(
+                      Icons.more_vert,
+                      size: 18,
+                      color: isDark
+                          ? Colors.grey.shade400
+                          : Colors.grey.shade600,
+                    ),
                   ),
                 ],
               ),
