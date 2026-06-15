@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeController themeController = Get.put(ThemeController());
-
     return Obx(() {
       return GetMaterialApp(
         initialBinding: InitialBinding(),
@@ -36,3 +35,4 @@ class MyApp extends StatelessWidget {
     });
   }
 }
+                                     

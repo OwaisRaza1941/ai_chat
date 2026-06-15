@@ -1,4 +1,5 @@
 import 'package:ai_chat/controller/chat_controller.dart';
+import 'package:ai_chat/dailog/delete_dailoge.dart';
 import 'package:ai_chat/utils/style/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_chat/utils/style/text_style.dart';
@@ -129,8 +130,39 @@ class _AnimatedChatCardState extends State<AnimatedChatCard>
                   SizedBox(height: 5),
                   IconButton(
                     style: IconButton.styleFrom(padding: EdgeInsets.zero),
-                    onPressed: () {
-                      chatController.deleteChat(widget.conversationId);
+                    onPressed: () async {
+                      showDeleteChatDialog(
+                        context: context,
+                        onDeleteForMe: () async {
+                          await chatController.deleteChat(
+                            widget.conversationId,
+                          );
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              behavior: SnackBarBehavior.floating,
+                              margin: EdgeInsets.all(16),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              content: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/logos/logo.png',
+                                    height: 40,
+                                    width: 40,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text('Chat deleted successfully'),
+                                  ),
+                                  Icon(Icons.check_circle, color: Colors.green),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
                     },
                     icon: Icon(
                       Icons.more_vert,

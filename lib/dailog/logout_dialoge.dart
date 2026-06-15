@@ -10,7 +10,6 @@ class LogoutDialoge extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Dialog(
-      
       backgroundColor: isDark ? AppColors.cardColor : AppColors.whiteText,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(

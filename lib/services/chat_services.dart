@@ -101,14 +101,22 @@ class ChatServices {
   /// Delete Chat
   Future<void> deleteChat(String conversationId) async {
     try {
-      /// Get Current User UID;
-      final uid = _auth.currentUser!.uid;
-      await _db
+      final chatRef = _db
           .collection('users')
           .doc(uid)
           .collection('chats')
-          .doc(conversationId)
-          .delete();
+          .doc(conversationId);
+
+      // Pehle saare messages lao
+      final messagesSnapshot = await chatRef.collection('messages').get();
+
+      // Saare messages delete karo
+      for (final doc in messagesSnapshot.docs) {
+        await doc.reference.delete();
+      }
+
+      // Phir chat document delete karo
+      await chatRef.delete();
     } on FirebaseException {
       rethrow;
     }
