@@ -35,16 +35,13 @@ class ChatScreen extends StatelessWidget {
                 if (chatController.conversationId.value.isEmpty) {
                   return Center(child: Text(''));
                 }
-
                 return StreamBuilder<List<ChatMessage>>(
                   stream: chatController.getMessages(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       return Center(child: CircularProgressIndicator());
                     }
-
                     final messages = snapshot.data!;
-
                     return ListView.builder(
                       padding: EdgeInsets.zero,
                       controller: chatController.scrollController,
@@ -68,7 +65,6 @@ class ChatScreen extends StatelessWidget {
               if (!chatController.isLoading.value) {
                 return SizedBox();
               }
-
               return Padding(
                 padding: EdgeInsets.all(12),
                 child: Row(
@@ -96,7 +92,6 @@ class ChatScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                       
                       decoration: BoxDecoration(
                         color: isDark ? AppColors.cardColor : Colors.white,
                         border: isDark
@@ -105,8 +100,7 @@ class ChatScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: TextField(
-                        maxLines: null,
-                        
+                        maxLines: null,                  
                         controller: messageController,
                         decoration: InputDecoration(
                           hintText: 'Type a messege',

@@ -138,7 +138,8 @@ class _AnimatedChatCardState extends State<AnimatedChatCard>
                             widget.conversationId,
                           );
 
-                          ScaffoldMessenger.of(context).showSnackBar(
+                          ScaffoldMessenger.
+                          of(context).showSnackBar(
                             SnackBar(
                               behavior: SnackBarBehavior.floating,
                               margin: EdgeInsets.all(16),
