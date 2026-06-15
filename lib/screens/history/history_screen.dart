@@ -1,5 +1,6 @@
 import 'package:ai_chat/screens/history/widgets/history_card.dart';
 import 'package:ai_chat/utils/style/text_style.dart';
+import 'package:ai_chat/widgets/custom_app_padding.dart';
 import 'package:flutter/material.dart';
 
 class HistoryScreen extends StatelessWidget {
@@ -10,20 +11,22 @@ class HistoryScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(20),
+        child: AppPadding(
+          bottom: 20,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              /// Heading
               Text(
                 "History",
                 style: AppTextStyle.h1.copyWith(
-                  color:Theme.of(context).textTheme.bodyLarge?.color,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
                 ),
               ),
 
               SizedBox(height: 20),
 
+              /// History Chats
               Expanded(
                 child: ListView(
                   children: [

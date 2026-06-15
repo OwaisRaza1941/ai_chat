@@ -11,11 +11,13 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// Theme Controller
     final ThemeController themeController = Get.find();
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: AppPadding(
+        bottom: 20,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [

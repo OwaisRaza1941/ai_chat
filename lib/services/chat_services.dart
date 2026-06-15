@@ -4,18 +4,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ChatServices {
+  //// Firebase CLoud Firestore Instance
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+
+  /// Firebase Authentication INstance
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  /// Get Current User id,
   String get uid => _auth.currentUser!.uid;
 
+  /// Create Chat Room
   Future<String> createChatRoom() async {
+    /// Generate Automatically Id Firestore
     final doc = _db.collection('users').doc(uid).collection('chats').doc();
     return doc.id;
   }
 
+  /// Get Chats
   Stream<List<ChatRoom>> getChats() {
+    /// Get Current User UID;
     final uid = _auth.currentUser!.uid;
 
+    /// Get Chats
     return _db
         .collection('users')
         .doc(uid)
@@ -31,8 +41,10 @@ class ChatServices {
 
   /// SEND MESSAGE
   Future<void> sendMessage(String chatId, ChatMessage message) async {
+    /// Get Current User UID;
     final uid = _auth.currentUser!.uid;
 
+    /// Save Messege in Firestore
     await _db
         .collection('users')
         .doc(uid)
@@ -56,8 +68,10 @@ class ChatServices {
 
   /// STREAM MESSAGES
   Stream<List<ChatMessage>> getMessages(String chatId) {
+    /// Get Current User UID;
     final uid = _auth.currentUser!.uid;
 
+    /// Get Messges
     return _db
         .collection('users')
         .doc(uid)
@@ -73,6 +87,7 @@ class ChatServices {
   }
 
   Future<void> createChatMetadata(String chatId, String firstMessage) async {
+    /// Create Chat Meta Data
     await _db.collection('users').doc(uid).collection('chats').doc(chatId).set({
       "title": firstMessage.length > 30
           ? firstMessage.substring(0, 30)

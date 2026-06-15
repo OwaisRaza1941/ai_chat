@@ -3,23 +3,27 @@ import 'package:ai_chat/controller/auth_controller.dart';
 import 'package:ai_chat/dailog/logout_dialoge.dart';
 import 'package:ai_chat/utils/style/app_colors.dart';
 import 'package:ai_chat/utils/style/text_style.dart';
+import 'package:ai_chat/widgets/custom_app_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
-  ProfileScreen({super.key});
-  final AuthController authController = Get.find();
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     /// Check if dark mode is enabled
     bool isDark = Theme.of(context).brightness == Brightness.dark;
+
+    /// AuthController
+    final AuthController authController = Get.find();
+
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(20),
+          child: AppPadding(
+            bottom: 20,
             child: Column(
               children: [
                 SizedBox(height: 20),
@@ -50,7 +54,6 @@ class ProfileScreen extends StatelessWidget {
                         radius: 45,
                         backgroundImage: AssetImage("assets/logos/logo.png"),
                       ),
-
                       SizedBox(height: 15),
 
                       Text(
@@ -60,7 +63,6 @@ class ProfileScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-
                       SizedBox(height: 5),
 
                       Text(

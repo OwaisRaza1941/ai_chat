@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //// ChatController
     final ChatController chatController = Get.find();
 
     return Scaffold(

@@ -2,10 +2,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class AIChatServices {
+  /// API KEY
   final String apiKey = '';
 
+  //// Send Messege IN Qroq Ai
   Future<String> sendMessage(String prompt) async {
     try {
+      /// Request Send
       final response = await http.post(
         Uri.parse('https://api.groq.com/openai/v1/chat/completions'),
         headers: {
@@ -20,6 +23,7 @@ class AIChatServices {
         }),
       );
 
+      /// Check response to jsonDecode and return erro
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
 

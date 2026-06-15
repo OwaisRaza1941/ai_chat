@@ -49,6 +49,7 @@ class AssistantScreen extends StatelessWidget {
 
               SizedBox(height: 15),
 
+              /// Tool Card
               Expanded(
                 child: GridView.count(
                   crossAxisCount: 2,

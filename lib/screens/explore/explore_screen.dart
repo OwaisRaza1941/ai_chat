@@ -1,6 +1,7 @@
 import 'package:ai_chat/screens/explore/widgets/explore_cards.dart';
 import 'package:ai_chat/utils/style/app_colors.dart';
 import 'package:ai_chat/utils/style/text_style.dart';
+import 'package:ai_chat/widgets/custom_app_padding.dart';
 import 'package:ai_chat/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +13,8 @@ class ExploreScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(20),
+        child: AppPadding(
+          bottom: 10,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
