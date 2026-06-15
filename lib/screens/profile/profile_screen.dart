@@ -64,6 +64,8 @@ class ProfileScreen extends StatelessWidget {
                         Get.to(SettingsScreen());
                       },
                     ),
+
+                    //// Logout Button
                     LogoutButton(isDark: isDark),
                   ],
                 ),

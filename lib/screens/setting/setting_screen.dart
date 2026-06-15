@@ -21,9 +21,11 @@ class SettingsScreen extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
+            /// Setting App Bar
             SettingAppBar(),
-
             SizedBox(height: 20),
+
+            //// Appearance
             Text(
               "Appearance",
               style: TextStyle(
@@ -48,7 +50,6 @@ class SettingsScreen extends StatelessWidget {
                 );
               }),
             ),
-
             settingTile(
               Icons.color_lens_outlined,
               "Accent Color",
@@ -63,29 +64,25 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
             ),
-
             SizedBox(height: 25),
 
+            /// General
             Text(
               "General",
-
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             SizedBox(height: 15),
 
             settingTile(Icons.text_fields, "Font Size", context),
-
             settingTile(
               Icons.chat_bubble_outline,
               "Chat Bubble Style",
               context,
             ),
-
             settingTile(
               Icons.vibration,
               "Haptic Feedback",
@@ -97,7 +94,6 @@ class SettingsScreen extends StatelessWidget {
                 activeColor: AppColors.primaryPurple,
               ),
             ),
-
             settingTile(
               Icons.volume_up_outlined,
               "Sound",
@@ -109,9 +105,9 @@ class SettingsScreen extends StatelessWidget {
                 activeColor: AppColors.primaryPurple,
               ),
             ),
-
             SizedBox(height: 25),
 
+            /// About
             Text(
               "About",
               style: TextStyle(
@@ -120,13 +116,10 @@ class SettingsScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             SizedBox(height: 15),
 
             settingTile(Icons.info_outline, "About AI Chat", context),
-
             settingTile(Icons.privacy_tip_outlined, "Privacy Policy", context),
-
             settingTile(
               Icons.description_outlined,
               "Terms of Service",

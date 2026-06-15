@@ -13,6 +13,7 @@ class HistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// Chat COntroller
     final ChatController chatController = Get.find();
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -32,6 +33,7 @@ class HistoryScreen extends StatelessWidget {
 
               SizedBox(height: 20),
 
+              /// REecent History Chats
               Expanded(
                 child: StreamBuilder<List<ChatRoom>>(
                   stream: chatController.getChats(),
