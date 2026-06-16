@@ -4,7 +4,8 @@ import 'package:ai_chat/widgets/custom_app_padding.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  final VoidCallback onSwitch;
+  const LoginScreen({super.key, required this.onSwitch});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 40),
 
-                LoginForm(),
+                LoginForm(onSwitch: onSwitch),
 
                 /// SOCIAL BUTTONS
                 SinUpSocialButtons(isDark: isDark),

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthServices {
@@ -8,7 +8,7 @@ class AuthServices {
   final FirebaseAuth _authSerices = FirebaseAuth.instance;
 
   /// GOOGL SININ IN INSTANCE
-  // final GoogleSignIn _googleSingIn = GoogleSignIn.instance;
+  final GoogleSignIn _googleSingIn = GoogleSignIn.instance;
 
   /// SINUP Loading
   RxBool sinUpLoading = false.obs;
@@ -41,54 +41,54 @@ class AuthServices {
     }
   }
 
-  //// GOOGLE SINGIN
-  // Future<UserCredential> continueWithGoogle() async {
-  //   try {
-  //     String webClientId =
-  //         '868475064396-cm21dqgbmnlgfp654f10lu18mclnunc6.apps.googleusercontent.com';
-
-  //     await _googleSingIn.initialize(serverClientId: webClientId);
-
-  //     GoogleSignInAccount account = await _googleSingIn.authenticate();
-
-  //     GoogleSignInAuthentication googleAuth = account.authentication;
-
-  //     final credential = GoogleAuthProvider.credential(
-  //       idToken: googleAuth.idToken,
-  //       accessToken: googleAuth.idToken,
-  //     );
-
-  //     UserCredential userCredential = await _authSerices.signInWithCredential(
-  //       credential,
-  //     );
-
-  //     return userCredential;
-  //   } on FirebaseException {
-  //     rethrow;
-  //   }
-  // }
-
-  /// FaceBook Sing Uo
-  Future<UserCredential?> facebookSignUp() async {
+  // GOOGLE SINGIN
+  Future<UserCredential> continueWithGoogle() async {
     try {
-      final LoginResult result = await FacebookAuth.instance.login();
+      String webClientId =
+          '868475064396-cm21dqgbmnlgfp654f10lu18mclnunc6.apps.googleusercontent.com';
 
-      if (result.status == LoginStatus.success) {
-        final AccessToken accessToken = result.accessToken!;
+      await _googleSingIn.initialize(serverClientId: webClientId);
 
-        final OAuthCredential credential = FacebookAuthProvider.credential(
-          accessToken.tokenString,
-        );
+      GoogleSignInAccount account = await _googleSingIn.authenticate();
 
-        return await FirebaseAuth.instance.signInWithCredential(credential);
-      }
+      GoogleSignInAuthentication googleAuth = account.authentication;
 
-      return null;
-    } on FirebaseAuthException catch (e) {
-      print(e.message);
+      final credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+        accessToken: googleAuth.idToken,
+      );
+
+      UserCredential userCredential = await _authSerices.signInWithCredential(
+        credential,
+      );
+
+      return userCredential;
+    } on FirebaseException {
       rethrow;
     }
   }
+
+  // /// FaceBook Sing Uo
+  // Future<UserCredential?> facebookSignUp() async {
+  //   try {
+  //     final LoginResult result = await FacebookAuth.instance.login();
+
+  //     if (result.status == LoginStatus.success) {
+  //       final AccessToken accessToken = result.accessToken!;
+
+  //       final OAuthCredential credential = FacebookAuthProvider.credential(
+  //         accessToken.tokenString,
+  //       );
+
+  //       return await FirebaseAuth.instance.signInWithCredential(credential);
+  //     }
+
+  //     return null;
+  //   } on FirebaseAuthException catch (e) {
+  //     print(e.message);
+  //     rethrow;
+  //   }
+  // }
 
   /// Reset Password
   Future<void> resetPassword(String email) async {

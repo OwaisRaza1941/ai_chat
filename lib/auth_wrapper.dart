@@ -1,4 +1,4 @@
-import 'package:ai_chat/auth/singUp/sing_up_screen.dart';
+import 'package:ai_chat/auth/auth_screen.dart';
 import 'package:ai_chat/screens/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class AuthWrapper extends StatelessWidget {
           } else if (user != null) {
             return MainScreen();
           } else {
-            return SignUpScreen();
+            return AuthScreen();
           }
         },
       ),

@@ -1,13 +1,14 @@
 import 'package:ai_chat/auth/resetpassword/reset_password.dart';
-import 'package:ai_chat/auth_wrapper.dart';
 import 'package:ai_chat/controller/auth_controller.dart';
+import 'package:ai_chat/dailog/app_snackbar.dart';
 import 'package:ai_chat/widgets/auth_textFildes.dart';
 import 'package:ai_chat/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginForm extends StatelessWidget {
-  LoginForm({super.key});
+  final VoidCallback onSwitch;
+  LoginForm({super.key, required this.onSwitch});
 
   /// CONTROLLERS
   final TextEditingController emailController = TextEditingController();
@@ -42,10 +43,11 @@ class LoginForm extends StatelessWidget {
             hintText: "Password",
             prefixIcon: Icons.lock,
             controller: passwordController,
-            obscureText: true,
+            obscureText: authController.isPasswordHidden.value,
             errorText: authController.passwordError.value,
             showSuccess: authController.isPasswordValid.value,
             onChanged: authController.validatePassword,
+            onTogglePassword: authController.togglePasswordVisibility,
           );
         }),
 
@@ -70,19 +72,13 @@ class LoginForm extends StatelessWidget {
             onPressed: () async {
               if (emailController.text.isEmpty ||
                   passwordController.text.isEmpty) {
-                Get.snackbar(
-                  "Error",
-                  "Please fill in all fields",
-                  backgroundColor: Colors.red,
-                  colorText: Colors.white,
-                );
+                AppSnackbar.error('Please fill the value before Login!');
                 return;
               }
               await authController.loginWithEmalAndPassword(
                 emailController.text,
                 passwordController.text,
               );
-              Get.to(() => AuthWrapper());
             },
           ),
         ),
@@ -96,9 +92,7 @@ class LoginForm extends StatelessWidget {
           children: [
             Text("Don't have an account? ", style: theme.textTheme.bodySmall),
             TextButton(
-              onPressed: () {
-                Get.back();
-              },
+              onPressed: onSwitch,
               child: Text(
                 "SingUp",
                 style: TextStyle(

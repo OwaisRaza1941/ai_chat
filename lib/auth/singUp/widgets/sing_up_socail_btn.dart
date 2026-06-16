@@ -16,26 +16,27 @@ class SinUpSocialButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        socialButtons(
-          isLoading: authController.googleLoading.value,
-          context: context,
-          isDark: isDark,
-          theme: theme,
-          image: 'assets/icons/google_icon.png',
-          onTap: () {},
-        ),
-        SizedBox(width: 30),
-        Obx(
-          () => socialButtons(
-            isLoading: authController.facBookLoading.value,
+        Obx(() {
+          return socialButtons(
+            isLoading: authController.googleLoading.value,
             context: context,
             isDark: isDark,
             theme: theme,
-            image: 'assets/icons/facebook_icon.png',
+            image: 'assets/icons/google_icon.png',
             onTap: () async {
-              await authController.facebookLogin();
+              await authController.continueWithGoogle();
             },
-          ),
+          );
+        }),
+
+        SizedBox(width: 30),
+        socialButtons(
+          isLoading: authController.facBookLoading.value,
+          context: context,
+          isDark: isDark,
+          theme: theme,
+          image: 'assets/icons/facebook_icon.png',
+          onTap: () async {},
         ),
       ],
     );

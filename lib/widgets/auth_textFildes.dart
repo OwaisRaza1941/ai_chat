@@ -49,15 +49,17 @@ class AuthTextField extends StatelessWidget {
               prefixIcon: Icon(
                 prefixIcon,
                 color: isDark ? AppColors.iconInactive : Colors.grey,
+                size: 22,
               ),
               isDense: true,
               suffixIcon: showSuccess
-                  ? Icon(Icons.check_circle, color: Colors.green)
+                  ? Icon(Icons.check_circle, color: Colors.green, size: 22,)
                   : onTogglePassword != null
                   ? IconButton(
                       onPressed: onTogglePassword,
                       icon: Icon(
                         obscureText ? Icons.visibility_off : Icons.visibility,
+                        size: 22,
                       ),
                     )
                   : null,

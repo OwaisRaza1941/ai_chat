@@ -1,4 +1,3 @@
-import 'package:ai_chat/auth/login/login_screen.dart';
 import 'package:ai_chat/components/profile_tile.dart';
 import 'package:ai_chat/controller/auth_controller.dart';
 import 'package:ai_chat/dailog/logout_dialoge.dart';
@@ -24,8 +23,8 @@ class LogoutButton extends StatelessWidget {
           builder: (context) {
             return LogoutDialoge(
               onPressed: () async {
+                Get.back();
                 await authController.logout();
-                Get.offAll(LoginScreen());
               },
             );
           },

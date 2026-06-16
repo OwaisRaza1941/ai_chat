@@ -4,7 +4,8 @@ import 'package:ai_chat/widgets/custom_app_padding.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key});
+  final VoidCallback onSwitch;
+  SignUpScreen({super.key, required this.onSwitch});
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -42,7 +43,7 @@ class SignUpScreen extends StatelessWidget {
 
                 SizedBox(height: 40),
 
-                SingUpFrom(),
+                SingUpFrom(onSwitch: onSwitch),
 
                 SinUpSocialButtons(isDark: isDark),
               ],

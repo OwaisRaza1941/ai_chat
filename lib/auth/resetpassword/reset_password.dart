@@ -1,4 +1,5 @@
 import 'package:ai_chat/controller/auth_controller.dart';
+import 'package:ai_chat/dailog/app_snackbar.dart';
 import 'package:ai_chat/utils/style/text_style.dart';
 import 'package:ai_chat/widgets/auth_textFildes.dart';
 import 'package:ai_chat/widgets/custom_app_padding.dart';
@@ -17,6 +18,7 @@ class ResetPassword extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: AppPadding(
+        bottom: 20,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -50,6 +52,10 @@ class ResetPassword extends StatelessWidget {
                 text: 'Reset Password',
                 isLoading: authController.resetPasswordLoading.value,
                 onPressed: () async {
+                  if (emailController.text.isEmpty) {
+                    AppSnackbar.error('Please Email fill!');
+                    return;
+                  }
                   await authController.resetPassword(emailController.text);
                   Get.back();
                 },

@@ -1,12 +1,13 @@
-import 'package:ai_chat/auth/login/login_screen.dart';
 import 'package:ai_chat/controller/auth_controller.dart';
+import 'package:ai_chat/dailog/app_snackbar.dart';
 import 'package:ai_chat/widgets/auth_textFildes.dart';
 import 'package:ai_chat/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SingUpFrom extends StatelessWidget {
-  SingUpFrom({super.key});
+  final VoidCallback onSwitch;
+  SingUpFrom({super.key, required this.onSwitch});
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -55,7 +56,8 @@ class SingUpFrom extends StatelessWidget {
             showSuccess: authController.isPasswordValid.value,
             errorText: authController.passwordError.value,
             onChanged: authController.validatePassword,
-            obscureText: true,
+            obscureText: authController.isPasswordHidden.value,
+            onTogglePassword: authController.togglePasswordVisibility,
           ),
         ),
 
@@ -69,13 +71,7 @@ class SingUpFrom extends StatelessWidget {
               if (!authController.isNameValid.value ||
                   !authController.isEmailValid.value ||
                   !authController.isPasswordValid.value) {
-                Get.snackbar(
-                  "Invalid Input",
-                  "Please correct the errors before signing up.",
-                  backgroundColor: theme.textTheme.bodyMedium!.color!
-                      .withOpacity(0.1),
-                  colorText: Colors.white,
-                );
+                AppSnackbar.error('Please correct the value before Sinup!');
                 return;
               }
               await authController.sinUpWitEmailPassword(
@@ -96,9 +92,7 @@ class SingUpFrom extends StatelessWidget {
           children: [
             Text("Already have an account? ", style: theme.textTheme.bodySmall),
             TextButton(
-              onPressed: () {
-                Get.to(LoginScreen());
-              },
+              onPressed: onSwitch,
               child: Text(
                 "LogIn",
                 style: TextStyle(

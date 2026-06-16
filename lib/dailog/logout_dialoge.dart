@@ -32,10 +32,7 @@ class LogoutDialoge extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text("Cancel"),
-                ),
+                TextButton(onPressed: onPressed, child: Text("Cancel")),
                 ElevatedButton(onPressed: onPressed, child: Text("Logout")),
               ],
             ),

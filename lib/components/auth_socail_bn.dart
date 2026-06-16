@@ -1,3 +1,4 @@
+import 'package:ai_chat/utils/style/app_colors.dart';
 import 'package:flutter/material.dart';
 
 GestureDetector socialButtons({
@@ -19,7 +20,16 @@ GestureDetector socialButtons({
         color: Theme.of(context).cardColor,
         border: isDark ? null : Border.all(color: theme.dividerColor),
       ),
-      child: Image.asset(image, fit: BoxFit.contain),
+      child: isLoading
+          ? SizedBox(
+              height: 20,
+              width: 20,
+              child: CircularProgressIndicator(
+                strokeWidth: 1,
+                color: AppColors.primaryBlue,
+              ),
+            )
+          : Image.asset(image, fit: BoxFit.contain),
     ),
   );
 }

@@ -39,6 +39,13 @@ class AuthController extends GetxController {
   final isEmailValid = false.obs;
   final isPasswordValid = false.obs;
 
+  /// Is ObsureText
+  RxBool isPasswordHidden = true.obs;
+
+  void togglePasswordVisibility() {
+    isPasswordHidden.value = !isPasswordHidden.value;
+  }
+
   /// VALIDATION FUNCTIONS
   void validateName(String value) {
     if (value.trim().length >= 3) {
@@ -146,49 +153,45 @@ class AuthController extends GetxController {
   }
 
   //// GOOGLE AUTHENTICATION
-  // Future<void> continueWithGoogle() async {
-  //   try {
-  //     googleLoading.value = true;
-  //     UserCredential? credential = await _authServices.continueWithGoogle();
-  //     if (credential != null) {
-  //       AppSnackbar.success('Googel Account Created Succesfull');
-  //     }
-  //   } on FirebaseAuthException catch (e) {
-  //     String msg = "Google sign in failed";
-
-  //     if (e.code == "account-exists-with-different-credential") {
-  //       msg = "This email is already linked with another sign in method.";
-  //     } else if (e.code == "invalid-credential") {
-  //       msg = "Invalid Google credentials.";
-  //     } else if (e.code == "operation-not-allowed") {
-  //       msg = "Google Sign-In is not enabled.";
-  //     } else if (e.code == "network-request-failed") {
-  //       msg = "Please check your internet connection.";
-  //     } else if (e.code == "too-many-requests") {
-  //       msg = "Too many attempts. Try again later.";
-  //     }
-
-  //     AppSnackbar.error(msg);
-  //   } finally {
-  //     googleLoading.value = false;
-  //   }
-  // }
-
-  /// Facebook Login
-  Future<void> facebookLogin() async {
+  Future<void> continueWithGoogle() async {
     try {
-      facBookLoading.value = true;
-      UserCredential? credential = await _authServices.facebookSignUp();
-      if (credential != null) {
-        AppSnackbar.success('Sing Up User SuceesFull in Facebook.');
+      googleLoading.value = true;
+      await _authServices.continueWithGoogle();
+      AppSnackbar.success('Googel Account Created Succesfully!');
+    } on FirebaseAuthException catch (e) {
+      String msg = "Google sign in failed";
+      if (e.code == "account-exists-with-different-credential") {
+        msg = "This email is already linked with another sign in method.";
+      } else if (e.code == "invalid-credential") {
+        msg = "Invalid Google credentials.";
+      } else if (e.code == "operation-not-allowed") {
+        msg = "Google Sign-In is not enabled.";
+      } else if (e.code == "network-request-failed") {
+        msg = "Please check your internet connection.";
+      } else if (e.code == "too-many-requests") {
+        msg = "Too many attempts. Try again later.";
       }
-    } on FirebaseException catch (e) {
-      print('Error FaceBook: $e');
-      AppSnackbar.error(e.toString());
+      AppSnackbar.error(msg);
     } finally {
-      facBookLoading.value = false;
+      googleLoading.value = false;
     }
   }
+
+  // /// Facebook Login
+  // Future<void> facebookLogin() async {
+  //   try {
+  //     facBookLoading.value = true;
+  //     UserCredential? credential = await _authServices.facebookSignUp();
+  //     if (credential != null) {
+  //       AppSnackbar.success('Sing Up User SuceesFull in Facebook.');
+  //     }
+  //   } on FirebaseException catch (e) {
+  //     print('Error FaceBook: $e');
+  //     AppSnackbar.error(e.toString());
+  //   } finally {
+  //     facBookLoading.value = false;
+  //   }
+  // }
 
   /// Reset Password
   Future<void> resetPassword(String email) async {
