@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 
@@ -66,6 +67,28 @@ class AuthServices {
   //     rethrow;
   //   }
   // }
+
+  /// FaceBook Sing Uo
+  Future<UserCredential?> facebookSignUp() async {
+    try {
+      final LoginResult result = await FacebookAuth.instance.login();
+
+      if (result.status == LoginStatus.success) {
+        final AccessToken accessToken = result.accessToken!;
+
+        final OAuthCredential credential = FacebookAuthProvider.credential(
+          accessToken.tokenString,
+        );
+
+        return await FirebaseAuth.instance.signInWithCredential(credential);
+      }
+
+      return null;
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      rethrow;
+    }
+  }
 
   /// Reset Password
   Future<void> resetPassword(String email) async {

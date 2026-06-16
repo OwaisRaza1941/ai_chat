@@ -19,6 +19,9 @@ class AuthController extends GetxController {
   // GOOGLE Loading
   RxBool googleLoading = false.obs;
 
+  // FACEBOOK Loading
+  RxBool facBookLoading = false.obs;
+
   // LOGOUT Loading
   RxBool logoutLoading = false.obs;
 
@@ -170,6 +173,22 @@ class AuthController extends GetxController {
   //     googleLoading.value = false;
   //   }
   // }
+
+  /// Facebook Login
+  Future<void> facebookLogin() async {
+    try {
+      facBookLoading.value = true;
+      UserCredential? credential = await _authServices.facebookSignUp();
+      if (credential != null) {
+        AppSnackbar.success('Sing Up User SuceesFull in Facebook.');
+      }
+    } on FirebaseException catch (e) {
+      print('Error FaceBook: $e');
+      AppSnackbar.error(e.toString());
+    } finally {
+      facBookLoading.value = false;
+    }
+  }
 
   /// Reset Password
   Future<void> resetPassword(String email) async {

@@ -25,13 +25,17 @@ class SinUpSocialButtons extends StatelessWidget {
           onTap: () {},
         ),
         SizedBox(width: 30),
-        socialButtons(
-          isLoading: false,
-          context: context,
-          isDark: isDark,
-          theme: theme,
-          image: 'assets/icons/facebook_icon.png',
-          onTap: () {},
+        Obx(
+          () => socialButtons(
+            isLoading: authController.facBookLoading.value,
+            context: context,
+            isDark: isDark,
+            theme: theme,
+            image: 'assets/icons/facebook_icon.png',
+            onTap: () async {
+              await authController.facebookLogin();
+            },
+          ),
         ),
       ],
     );
